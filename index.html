@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Berry's Strawberry Cake</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <script type="text/javascript">
+  (function(f,b){if(!b.__SV){var a,e,i,g;window.mixpanel=b;b._i=[];b.init=function(a,e,d){function f(b,h){var a=h.split(".");2==a.length&&(b=b[a[0]],h=a[1]);b[h]=function(){b.push([h].concat(Array.prototype.slice.call(arguments,0)))}}var c=b;"undefined"!==typeof d?c=b[d]=[]:d="mixpanel";c.people=c.people||[];c.toString=function(b){var a="mixpanel";"mixpanel"!==d&&(a+="."+d);b||(a+=" (stub)");return a};c.people.toString=function(){return c.toString(1)+".people (stub)"};i="disable time_event track track_pageview track_links track_forms track_with_groups add_group set_group remove_group register register_once alias unalias identify name_tag set_config reset people.set people.set_once people.unset people.increment people.append people.union people.track_charge people.clear_charges people.delete_user people.remove people.unset_group".split(" ");
+  for(g=0;g<i.length;g++)f(c,i[g]);b._i.push([a,e,d])};b.__SV=1.2;a=f.createElement("script");a.type="text/javascript";a.async=!0;a.src="undefined"!==typeof MIXPANEL_CUSTOM_LIB_URL?MIXPANEL_CUSTOM_LIB_URL:"file:"===f.location.protocol&&"//://mxpnl.com".match(/^\/\//)?"https://://mxpnl.com":"//://mxpnl.com";e=f.getElementsByTagName("script")[0];e.parentNode.insertBefore(a,e)}})(document,window.mixpanel||[]);
+
+  // Initialize your project (Replace with your actual token)
+  mixpanel.init('YOUR_PROJECT_TOKEN', {
+    track_pageview: true, // Automatically tracks when they get on the website
+    ip: true              // Ensures raw IP addresses are captured for security tracking
+  });
+
+  // ==========================================
+// 1. GAME START (Track when they begin playing)
+// ==========================================
+let gameStartTime;
+
+function startGame() {
+    gameStartTime = Date.now(); // Mark the exact millisecond they start
+    
+    mixpanel.track('Game Started', {
+        'Game Mode': 'Standard'
+    });
+}
+
+// ==========================================
+// 2. PLAYER FAILURE (Track deaths or fails)
+// ==========================================
+let failureCount = 0;
+
+function playerFailed(reason) {
+    failureCount++;
+    
+    mixpanel.track('Player Failed', {
+        'Failure Reason': reason, // e.g., "Fell in pit", "Time ran out"
+        'Current Failure Count': failureCount
+    });
+}
+
+// ==========================================
+// 3. GAME COMPLETED (Track speed and catch cheaters)
+// ==========================================
+function gameCompleted() {
+    const totalTimeInSeconds = (Date.now() - gameStartTime) / 1000;
+    
+    // Security check: Change "10" to the absolute fastest physical time a human could beat your game
+    let suspiciousActivity = false;
+    if (totalTimeInSeconds < 10) { 
+        suspiciousActivity = true;
+    }
+
+    mixpanel.track('Game Completed', {
+        'Time Taken (Seconds)': totalTimeInSeconds,
+        'Total Failures': failureCount,
+        'Is Suspicious/Cheater': suspiciousActivity
+    });
+}
+
+</script>
+
+</head>
+
+<body>
+
+
+    <!-- =========================
+         INTRO
+    ========================== -->
+
+    <div id="intro" class="screen active">
+
+        <div class="message-container">
+
+            <img
+                src="images/message-box.png"
+                alt=""
+            >
+
+        </div>
+
+        <button id="next-button">
+            NEXT
+        </button>
+
+    </div>
+
+
+    <!-- =========================
+         INSTRUCTIONS
+    ========================== -->
+
+    <div id="instructions" class="screen">
+
+        <div class="message-container">
+
+            <img
+                src="images/message-box-two.png"
+                alt=""
+            >
+
+        </div>
+
+        <button id="go-button">
+            GO
+        </button>
+
+    </div>
+
+
+    <!-- =========================
+         CATCHING INSTRUCTIONS
+    ========================== -->
+
+    <div id="catch-instructions" class="screen">
+
+        <div id="catch-instruction-box">
+
+            <h1>
+                Catch the ingredients in order!
+            </h1>
+
+            <p>
+                You must catch the ingredients in the order shown on the list.
+            </p>
+
+            <p>
+                If you miss the ingredient or catch the wrong ingredient,
+                you get a strike.
+            </p>
+
+            <h2>
+                Get 3 strikes and you lose!
+            </h2>
+
+        </div>
+
+        <button id="start-catching-button">
+            START
+        </button>
+
+    </div>
+
+
+    <!-- =========================
+         CATCHING GAME
+    ========================== -->
+
+    <div id="catch-game" class="screen">
+
+        <div id="game-area">
+
+
+            <!-- COUNTDOWN -->
+
+            <div id="countdown">
+                3
+            </div>
+
+
+            <!-- PAUSE -->
+
+            <button id="pause-button">
+                Ⅱ
+            </button>
+
+
+            <!-- STRIKES -->
+
+            <div id="strike-display">
+
+                <span class="strike-label">
+                    STRIKES
+                </span>
+
+                <span id="strike-count">
+                    0
+                </span>
+
+                <span class="strike-limit">
+                    / 3
+                </span>
+
+            </div>
+
+
+           <!-- INGREDIENT LIST -->
+
+<div id="list-container">
+
+    <div id="collection-progress">
+
+        <div id="progress-row-frosting">
+            Frosting:
+            <img src="images/frosting.png" alt="Frosting">
+            <span id="progress-frosting">
+                0/3
+            </span>
+        </div>
+
+        <div id="progress-row-strawberry">
+            Strawberries:
+            <img src="images/strawberry.png" alt="Strawberries">
+            <span id="progress-strawberry">
+                0/4
+            </span>
+        </div>
+
+        <div id="progress-row-butter">
+            Butter:
+            <img src="images/butter.png" alt="Butter">
+            <span id="progress-butter">
+                0/2
+            </span>
+        </div>
+
+        <div id="progress-row-sugar">
+            Sugar:
+            <img src="images/sugar.png" alt="Sugar">
+            <span id="progress-sugar">
+                0/1
+            </span>
+        </div>
+
+        <div id="progress-row-egg">
+            Eggs:
+            <img src="images/egg.png" alt="Eggs">
+            <span id="progress-egg">
+                0/3
+            </span>
+        </div>
+
+        <div id="progress-row-milk">
+            Milk:
+            <img src="images/milk.png" alt="Milk">
+            <span id="progress-milk">
+                0/1
+            </span>
+        </div>
+
+        <div id="progress-row-flour">
+            Flour:
+            <img src="images/flour.png" alt="Flour">
+            <span id="progress-flour">
+                0/2
+            </span>
+        </div>
+
+        <div id="progress-row-oil">
+            Oil:
+            <img src="images/oil.png" alt="Oil">
+            <span id="progress-oil">
+                0/2
+            </span>
+        </div>
+
+    </div>
+
+</div>
+
+            <!-- FALLING INGREDIENTS -->
+
+            <div id="falling-ingredients"></div>
+
+
+            <!-- BERRY -->
+
+            <img
+                id="berry"
+                src="images/berry.png"
+                alt="Berry"
+            >
+
+
+            <!-- TOUCH CONTROLS -->
+
+            <div id="touch-controls">
+
+                <button id="left-button">
+                    ←
+                </button>
+
+                <button id="right-button">
+                    →
+                </button>
+
+            </div>
+
+
+            <p id="movement-help">
+                Use ← → or A / D to move Berry
+            </p>
+
+
+            <!-- PAUSE OVERLAY -->
+
+            <div id="pause-overlay">
+
+                <div id="pause-box">
+
+                    <h2>
+                        PAUSED
+                    </h2>
+
+                    <button id="resume-button">
+                        RESUME
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         YOU LOSE
+    ========================== -->
+
+    <div id="lose-screen" class="screen">
+
+        <div id="lose-box">
+
+            <h1>
+                You lost!
+            </h1>
+
+            <p>
+                You got 3 strikes.
+            </p>
+
+            <p>
+                Try again and catch the ingredients in order!
+            </p>
+
+        </div>
+
+        <button id="retry-button">
+            TRY AGAIN
+        </button>
+
+    </div>
+
+
+    <!-- =========================
+         FINISHED CATCHING
+    ========================== -->
+
+    <div id="finished-catching" class="screen">
+
+        <div id="finished-box">
+
+            <h1>
+                You did it!
+            </h1>
+
+            <p>
+                You collected all the ingredients!
+            </p>
+
+            <p id="final-strikes">
+                Strikes: 0
+            </p>
+
+        </div>
+
+        <button id="finished-next-button">
+            NEXT
+        </button>
+
+    </div>
+
+
+    <!-- =========================
+         CAKE MAKING
+    ========================== -->
+
+    <div id="cake-making" class="screen">
+
+        <h1>
+            Make Berry's Cake!
+        </h1>
+
+        <p id="cake-instructions">
+            Drag each ingredient into the bowl!
+        </p>
+
+
+        <!-- INGREDIENT REQUIREMENTS -->
+
+        <div id="cake-requirements">
+
+            <h2>
+                Ingredients needed:
+            </h2>
+
+
+            <div id="cake-row-frosting">
+                Frosting:
+                <span id="cake-frosting">
+                    0/3
+                </span>
+            </div>
+
+            <div id="cake-row-strawberry">
+                Strawberries:
+                <span id="cake-strawberry">
+                    0/4
+                </span>
+            </div>
+
+            <div id="cake-row-butter">
+                Butter:
+                <span id="cake-butter">
+                    0/2
+                </span>
+            </div>
+
+            <div id="cake-row-sugar">
+                Sugar:
+                <span id="cake-sugar">
+                    0/1
+                </span>
+            </div>
+
+            <div id="cake-row-egg">
+                Eggs:
+                <span id="cake-egg">
+                    0/3
+                </span>
+            </div>
+
+            <div id="cake-row-milk">
+                Milk:
+                <span id="cake-milk">
+                    0/1
+                </span>
+            </div>
+
+            <div id="cake-row-flour">
+                Flour:
+                <span id="cake-flour">
+                    0/2
+                </span>
+            </div>
+
+            <div id="cake-row-oil">
+                Oil:
+                <span id="cake-oil">
+                    0/2
+                </span>
+            </div>
+
+        </div>
+
+
+        <!-- BOWL -->
+
+        <div id="bowl-area">
+
+            <div id="bowl"></div>
+
+        </div>
+
+
+        <!-- INGREDIENTS -->
+
+        <div id="drag-ingredients"></div>
+
+    </div>
+
+
+    <!-- =========================
+         FINAL SCREEN
+    ========================== -->
+
+    <div id="final-screen" class="screen">
+
+        <div id="final-message">
+
+            <h1>
+                Thanks to your help, Berry can now enjoy his strawberry cake!
+            </h1>
+
+            <img
+                src="images/cake.png"
+                alt="Berry's strawberry cake"
+            >
+
+        </div>
+
+    </div>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
