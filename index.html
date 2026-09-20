@@ -3,77 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cake Game</title>
 
-    <title>Berry's Strawberry Cake</title>
+    <!-- 1. OFFICIAL MIXPANEL TRACKING SCRIPT (Do not modify anything inside here) -->
+    <script type="text/javascript">
+      (function(f,b){if(!b.__SV){var a,e,i,g;window.mixpanel=b;b._i=[];b.init=function(a,e,d){function f(b,h){var a=h.split(".");2==a.length&&(b=b[a],h=a);b[h]=function(){b.push([h].concat(Array.prototype.slice.call(arguments,0)))}}var c=b;"undefined"!==typeof d?c=b[d]=[]:d="mixpanel";c.people=c.people||[];c.toString=function(b){var a="mixpanel";"mixpanel"!==d&&(a+="."+d);b||(a+=" (stub)");return a};c.people.toString=function(){return c.toString(1)+".people (stub)"};i="disable time_event track track_pageview track_links track_forms track_with_groups add_group set_group remove_group register register_once alias unalias identify name_tag set_config reset people.set people.set_once people.unset people.increment people.append people.union people.track_charge people.clear_charges people.delete_user people.remove people.unset_group".split(" ");
+      for(g=0;g<i.length;g++)f(c,i[g]);b._i.push([a,e,d])};b.__SV=1.2;a=f.createElement("script");a.type="text/javascript";a.async=!0;
+      a.src="https://mxpnl.com";
+      e=f.getElementsByTagName("script");e.parentNode.insertBefore(a,e)}})(document,window.mixpanel||[]);
 
-    <link rel="stylesheet" href="style.css">
-
-    <!-- DELETE YOUR OLD MIXPANEL CODE AND PASTE THIS ENTIRE BLOCK INSTEAD -->
-<script type="text/javascript">
-  (function(f,b){if(!b.__SV){var a,e,i,g;window.mixpanel=b;b._i=[];b.init=function(a,e,d){function f(b,h){var a=h.split(".");2==a.length&&(b=b[a],h=a);b[h]=function(){b.push([h].concat(Array.prototype.slice.call(arguments,0)))}}var c=b;"undefined"!==typeof d?c=b[d]=[]:d="mixpanel";c.people=c.people||[];c.toString=function(b){var a="mixpanel";"mixpanel"!==d&&(a+="."+d);b||(a+=" (stub)");return a};c.people.toString=function(){return c.toString(1)+".people (stub)"};i="disable time_event track track_pageview track_links track_forms track_with_groups add_group set_group remove_group register register_once alias unalias identify name_tag set_config reset people.set people.set_once people.unset people.increment people.append people.union people.track_charge people.clear_charges people.delete_user people.remove people.unset_group".split(" ");
-  for(g=0;g<i.length;g++)f(c,i[g]);b._i.push([a,e,d])};b.__SV=1.2;a=f.createElement("script");a.type="text/javascript";a.async=!0;
-  
-  // Clean link that fixes your browser error
-  a.src="https://mxpnl.com";
-  
-  e=f.getElementsByTagName("script");e.parentNode.insertBefore(a,e)}})(document,window.mixpanel||[]);
-
-  // Initialize with your token
-  mixpanel.init('3696f91970543a77a17dcbdf77614780', {
-    track_pageview: true, 
-    ip: true              
-  });
-</script>
-
-  // ==========================================
-// 1. GAME START (Track when they begin playing)
-// ==========================================
-let gameStartTime;
-
-function startGame() {
-    gameStartTime = Date.now(); // Mark the exact millisecond they start
-    
-    mixpanel.track('Game Started', {
-        'Game Mode': 'Standard'
-    });
-}
-
-// ==========================================
-// 2. PLAYER FAILURE (Track deaths or fails)
-// ==========================================
-let failureCount = 0;
-
-function playerFailed(reason) {
-    failureCount++;
-    
-    mixpanel.track('Player Failed', {
-        'Failure Reason': reason, // e.g., "Fell in pit", "Time ran out"
-        'Current Failure Count': failureCount
-    });
-}
-
-// ==========================================
-// 3. GAME COMPLETED (Track speed and catch cheaters)
-// ==========================================
-function gameCompleted() {
-    const totalTimeInSeconds = (Date.now() - gameStartTime) / 1000;
-    
-    // Security check: Change "10" to the absolute fastest physical time a human could beat your game
-    let suspiciousActivity = false;
-    if (totalTimeInSeconds < 10) { 
-        suspiciousActivity = true;
-    }
-
-    mixpanel.track('Game Completed', {
-        'Time Taken (Seconds)': totalTimeInSeconds,
-        'Total Failures': failureCount,
-        'Is Suspicious/Cheater': suspiciousActivity
-    });
-}
-
-</script>
-
+      // Initialize Mixpanel with your project token
+      mixpanel.init('3696f91970543a77a17dcbdf77614780', {
+        track_pageview: true, 
+        ip: true              
+      });
+    </script>
 </head>
+<body>
+
+    <!-- ========================================== -->
+    <!-- INTRO SCREEN LAYOUT -->
+    <!-- ========================================== -->
+    <!-- 🟢 THIS IS THE INTRO DIV SEEN IN YOUR SCREENSHOT -->
+    <div id="intro" class="screen active">
+        <div class="message-container">
+            <!-- Your intro text, game titles, or images go here -->
+        </div>
+    </div>
+
+    <!-- The rest of your game screen divs (like div id="cake-making") go here... -->
+
+
+    <!-- ========================================== -->
+    <!-- 2. YOUR GAME SCRIPT CONNECTIONS -->
+    <!-- Place these at the absolute BOTTOM of your body -->
+    <!-- ========================================== -->
+    <!-- Fix your script source links so they don't break. For example: -->
+    <!-- <script src="js/game.js"></script> -->
+
+</body>
+</html>
+
 
 <body>
 
