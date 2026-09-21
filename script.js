@@ -507,46 +507,39 @@ function createFallingIngredient() {
         true
     );
 
+/*
+   Add wrong ingredients.
+   Desktop gets FIVE wrong ingredients.
+   Mobile gets THREE wrong ingredients.
+*/
+
+const wrongIngredientCount =
+    window.innerWidth <= 600 ? 3 : 5;
+
+
+for (
+    let i = 0;
+    i < wrongIngredientCount;
+    i++
+) {
 
     /*
-       Add FIVE wrong ingredients.
-       This means SIX ingredients will
-       be falling at once.
+       If we run out of unique ingredient
+       types, start using them again.
     */
 
-    let wrongTypes =
-        ingredientTypes.filter(
-            function(type) {
-
-                return type !== targetType;
-
-            }
-        );
+    const wrongType =
+        wrongTypes[
+            i % wrongTypes.length
+        ];
 
 
-    /*
-       Shuffle the possible wrong ingredients.
-    */
+    createFallingObject(
+        wrongType,
+        false
+    );
 
-    wrongTypes =
-        wrongTypes.sort(
-            function() {
-
-                return Math.random() - 0.5;
-
-            }
-        );
-
-
-    /*
-       Add five wrong ingredients.
-    */
-
-    for (
-        let i = 0;
-        i < 5;
-        i++
-    ) {
+}
 
         /*
            If we run out of unique ingredient
