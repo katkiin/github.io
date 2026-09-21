@@ -1165,48 +1165,40 @@ body {
         width: 45px;
         height: 45px;
     }
+/* ---------- FINAL SCREEN ---------- */
 
+#final-screen {
+    width: 100vw;
+    height: 100dvh;
+    min-height: 0;
 
-      /* ---------- FINAL SCREEN ---------- */
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 
-    #final-screen {
-        width: 100vw;
-        height: 100dvh;
-        min-height: 0;
+    overflow: hidden;
 
-        display: none;
-
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-
-        overflow: hidden;
-
-        padding: 20px;
-        box-sizing: border-box;
-    }
-
-    #final-screen.active {
-        display: flex;
-    }
-
-    #final-message {
-        width: 90vw;
-        max-width: 650px;
-
-        text-align: center;
-    }
-
-    #final-message h1 {
-        font-size: 23px;
-        line-height: 1.25;
-
-        margin: 0 0 15px;
-    }
-
-    #final-message img {
-        width: 250px;
-        max-width: 75vw;
-        height: auto;
-    }
+    padding: 20px;
+    box-sizing: border-box;
 }
+
+#final-message {
+    width: 90vw;
+    max-width: 650px;
+
+    text-align: center;
+}
+
+#final-message h1 {
+    font-size: 23px;
+    line-height: 1.25;
+
+    margin: 0 0 15px;
+}
+
+#final-message img {
+    width: 250px;
+    max-width: 75vw;
+    height: auto;
+}
+
