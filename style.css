@@ -420,6 +420,12 @@ body {
     z-index: 20;
 }
 
+#berry {
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none;
+    -webkit-user-drag: none;
+}
 
 /* =========================
    TOUCH CONTROLS
@@ -462,6 +468,19 @@ body {
     transform: scale(0.95);
 }
 
+#touch-controls {
+    touch-action: manipulation;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+#left-button,
+#right-button {
+    touch-action: manipulation;
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+}
 
 /* =========================
    MOVEMENT HELP
