@@ -823,7 +823,7 @@ leftButton.addEventListener(
 
         event.preventDefault();
 
-        berryX -= 35;
+        berryX -= 20;
 
         moveBerry();
 
@@ -837,7 +837,7 @@ rightButton.addEventListener(
 
         event.preventDefault();
 
-        berryX += 35;
+        berryX += 20;
 
         moveBerry();
 
