@@ -1813,3 +1813,5 @@ function cakeMakingFinished() {
 
     return true;
 }
+
+showScreen("final-screen");
