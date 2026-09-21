@@ -1,3 +1,4 @@
+```javascript
 console.log("SCRIPT LOADED");
 
 
@@ -1486,41 +1487,32 @@ function stopDragging(event) {
     const ingredient =
         draggedIngredient;
 
-
     const bowl =
         document.getElementById("bowl");
 
-
-    const ingredientRect =
-        ingredient.getBoundingClientRect();
+    const type =
+        ingredient.dataset.type;
 
 
     const bowlRect =
         bowl.getBoundingClientRect();
 
 
-    const overlapping = (
+    /*
+       MOBILE-FRIENDLY DROP DETECTION
 
-        ingredientRect.left <
-        bowlRect.right &&
+       Instead of requiring the whole ingredient
+       image to overlap the bowl, we check whether
+       the user's finger is inside the bowl when
+       they release the ingredient.
+    */
 
-        ingredientRect.right >
-        bowlRect.left &&
+    const droppedInBowl =
+        event.clientX >= bowlRect.left &&
+        event.clientX <= bowlRect.right &&
+        event.clientY >= bowlRect.top &&
+        event.clientY <= bowlRect.bottom;
 
-        ingredientRect.top <
-        bowlRect.bottom &&
-
-        ingredientRect.bottom >
-        bowlRect.top
-
-    );
-
-
-    const type =
-        ingredient.dataset.type;
-
-
-    /* Stop dragging listeners */
 
     document.removeEventListener(
         "pointermove",
@@ -1537,19 +1529,31 @@ function stopDragging(event) {
        INGREDIENT WAS DROPPED INTO BOWL
     ========================================== */
 
-    if (overlapping) {
+    if (droppedInBowl) {
 
         cakeProgress[type]++;
 
         updateCakeProgress();
 
 
-        const remaining =
-            needed[type] -
-            cakeProgress[type];
+        console.log(
+            "Added:",
+            type,
+            cakeProgress[type] +
+            "/" +
+            needed[type]
+        );
 
 
-        if (remaining <= 0) {
+        /*
+           Remove the ingredient once its required
+           amount has been reached.
+        */
+
+        if (
+            cakeProgress[type] >=
+            needed[type]
+        ) {
 
             ingredient.remove();
 
@@ -1573,6 +1577,11 @@ function stopDragging(event) {
 
             console.log(
                 "CAKE COMPLETE!"
+            );
+
+            console.log(
+                "Final cake progress:",
+                cakeProgress
             );
 
 
@@ -1686,15 +1695,26 @@ function updateCakeProgress() {
                 );
 
 
-            if (
-                row &&
-                cakeProgress[type] >=
-                needed[type]
-            ) {
+            if (row) {
 
-                row.classList.add(
-                    "cake-complete"
-                );
+                if (
+                    cakeProgress[type] >=
+                    needed[type]
+                ) {
+
+                    row.classList.add(
+                        "cake-complete"
+                    );
+
+                }
+
+                else {
+
+                    row.classList.remove(
+                        "cake-complete"
+                    );
+
+                }
 
             }
 
