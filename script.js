@@ -962,21 +962,21 @@ function checkCollisions() {
                 .getBoundingClientRect();
 
 
-        const collision = (
+       const collision = (
 
-            berryRect.left <
-            ingredientRect.right &&
+    berryRect.left + berryRect.width * 0.25 <
+    ingredientRect.right &&
 
-            berryRect.right >
-            ingredientRect.left &&
+    berryRect.right - berryRect.width * 0.25 >
+    ingredientRect.left &&
 
-            berryRect.top <
-            ingredientRect.bottom &&
+    berryRect.top + berryRect.height * 0.25 <
+    ingredientRect.bottom &&
 
-            berryRect.bottom >
-            ingredientRect.top
+    berryRect.bottom - berryRect.height * 0.25 >
+    ingredientRect.top
 
-        );
+);
 
 
         if (collision) {
