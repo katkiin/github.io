@@ -1691,16 +1691,16 @@ function stopDragging(event) {
 
     draggedIngredient = null;
 
+if (finished) {
 
-    if (finished) {
+    showScreen("final-screen");
 
-        showScreen("final-screen");
-
+    setTimeout(function() {
         sendGameSession();
-
-    }
+    }, 100);
 
 }
+   
 
 
 /* ==================================================
