@@ -6,8 +6,14 @@
     box-sizing: border-box;
 }
 
+html,
 body {
     margin: 0;
+    width: 100%;
+    height: 100%;
+}
+
+body {
     font-family: Arial, sans-serif;
     overflow: hidden;
 }
@@ -53,7 +59,6 @@ body {
 #start-catching-button,
 #finished-next-button,
 #retry-button {
-
     margin-top: 20px;
 
     padding: 12px 35px;
@@ -75,7 +80,6 @@ body {
 #start-catching-button:hover,
 #finished-next-button:hover,
 #retry-button:hover {
-
     transform: scale(1.05);
 }
 
@@ -85,9 +89,7 @@ body {
 ========================= */
 
 #instructions {
-
     background: #ffe4ed;
-
     flex-direction: column;
 }
 
@@ -97,18 +99,13 @@ body {
 ========================= */
 
 #catch-instructions {
-
     background: #ffe4ed;
-
     flex-direction: column;
-
     text-align: center;
-
     padding: 20px;
 }
 
 #catch-instruction-box {
-
     max-width: 650px;
 
     background: white;
@@ -122,7 +119,6 @@ body {
 }
 
 #catch-instruction-box h1 {
-
     margin-top: 0;
 
     color: #8d4961;
@@ -131,7 +127,6 @@ body {
 }
 
 #catch-instruction-box p {
-
     color: #754454;
 
     font-size: 19px;
@@ -140,7 +135,6 @@ body {
 }
 
 #catch-instruction-box h2 {
-
     margin-bottom: 0;
 
     color: #d34e73;
@@ -154,7 +148,6 @@ body {
 ========================= */
 
 #catch-game {
-
     background-image: url("images/background.jpeg");
 
     background-size: cover;
@@ -165,7 +158,6 @@ body {
 }
 
 #game-area {
-
     width: 100vw;
     height: 100vh;
 
@@ -180,7 +172,6 @@ body {
 ========================= */
 
 #countdown {
-
     position: absolute;
 
     top: 40%;
@@ -205,7 +196,6 @@ body {
 ========================= */
 
 #pause-button {
-
     position: absolute;
 
     top: 15px;
@@ -233,7 +223,6 @@ body {
 ========================= */
 
 #strike-display {
-
     position: absolute;
 
     top: 15px;
@@ -258,7 +247,6 @@ body {
 }
 
 .strike-label {
-
     display: block;
 
     font-size: 14px;
@@ -268,7 +256,6 @@ body {
 }
 
 #strike-count {
-
     font-size: 34px;
 
     font-weight: bold;
@@ -279,18 +266,17 @@ body {
 }
 
 .strike-limit {
-
     font-size: 24px;
 
     font-weight: bold;
 }
+
 
 /* =========================
    INGREDIENT LIST
 ========================= */
 
 #list-container {
-
     position: absolute;
 
     top: 15px;
@@ -301,13 +287,7 @@ body {
     z-index: 40;
 }
 
-
-/* =========================
-   COLLECTION COUNTER
-========================= */
-
 #collection-progress {
-
     margin-top: 8px;
 
     padding: 12px 14px;
@@ -326,7 +306,6 @@ body {
 }
 
 #collection-progress div {
-
     display: flex;
 
     align-items: center;
@@ -341,7 +320,6 @@ body {
 }
 
 #collection-progress img {
-
     width: 36px;
     height: 36px;
 
@@ -351,17 +329,12 @@ body {
 }
 
 #collection-progress span {
-
     font-weight: bold;
 
     margin-left: auto;
 }
 
-
-/* CURRENT INGREDIENT */
-
 .current-ingredient {
-
     background: rgba(242, 138, 173, 0.45);
 
     border-radius: 5px;
@@ -373,13 +346,11 @@ body {
 }
 
 
-
 /* =========================
    FALLING INGREDIENTS
 ========================= */
 
 #falling-ingredients {
-
     position: absolute;
 
     inset: 0;
@@ -388,7 +359,6 @@ body {
 }
 
 .falling-ingredient {
-
     position: absolute;
 
     width: 65px;
@@ -405,7 +375,6 @@ body {
 ========================= */
 
 #berry {
-
     position: absolute;
 
     bottom: 95px;
@@ -418,21 +387,20 @@ body {
     height: auto;
 
     z-index: 20;
-}
 
-#berry {
     -webkit-user-select: none;
     user-select: none;
+
     -webkit-touch-callout: none;
     -webkit-user-drag: none;
 }
+
 
 /* =========================
    TOUCH CONTROLS
 ========================= */
 
 #touch-controls {
-
     position: absolute;
 
     bottom: 20px;
@@ -445,10 +413,14 @@ body {
     gap: 20px;
 
     z-index: 30;
+
+    touch-action: manipulation;
+
+    user-select: none;
+    -webkit-user-select: none;
 }
 
 #touch-controls button {
-
     width: 70px;
     height: 55px;
 
@@ -461,33 +433,25 @@ body {
     font-weight: bold;
 
     cursor: pointer;
+
+    touch-action: manipulation;
+
+    user-select: none;
+    -webkit-user-select: none;
+
+    -webkit-touch-callout: none;
 }
 
 #touch-controls button:active {
-
     transform: scale(0.95);
 }
 
-#touch-controls {
-    touch-action: manipulation;
-    user-select: none;
-    -webkit-user-select: none;
-}
-
-#left-button,
-#right-button {
-    touch-action: manipulation;
-    user-select: none;
-    -webkit-user-select: none;
-    -webkit-touch-callout: none;
-}
 
 /* =========================
    MOVEMENT HELP
 ========================= */
 
 #movement-help {
-
     position: absolute;
 
     bottom: 2px;
@@ -513,7 +477,6 @@ body {
 ========================= */
 
 #pause-overlay {
-
     display: none;
 
     position: absolute;
@@ -529,12 +492,10 @@ body {
 }
 
 #pause-overlay.active {
-
     display: flex;
 }
 
 #pause-box {
-
     background: white;
 
     padding: 30px 50px;
@@ -545,14 +506,12 @@ body {
 }
 
 #pause-box h2 {
-
     margin-top: 0;
 
     color: #8d4961;
 }
 
 #resume-button {
-
     padding: 10px 25px;
 
     border: none;
@@ -573,7 +532,6 @@ body {
 ========================= */
 
 #lose-screen {
-
     background: #ffe4ed;
 
     flex-direction: column;
@@ -584,7 +542,6 @@ body {
 }
 
 #lose-box {
-
     background: white;
 
     padding: 35px 50px;
@@ -598,7 +555,6 @@ body {
 }
 
 #lose-box h1 {
-
     color: #d34e73;
 
     margin-top: 0;
@@ -607,7 +563,6 @@ body {
 }
 
 #lose-box p {
-
     color: #754454;
 
     font-size: 19px;
@@ -619,7 +574,6 @@ body {
 ========================= */
 
 #finished-catching {
-
     background: #ffe4ed;
 
     flex-direction: column;
@@ -628,7 +582,6 @@ body {
 }
 
 #finished-box {
-
     background: white;
 
     padding: 30px 50px;
@@ -640,14 +593,12 @@ body {
 }
 
 #finished-box h1 {
-
     color: #8d4961;
 
     margin-top: 0;
 }
 
 #finished-box p {
-
     color: #754454;
 
     font-size: 20px;
@@ -659,7 +610,6 @@ body {
 ========================= */
 
 #cake-making {
-
     position: relative;
 
     background: #ffe4ed;
@@ -674,14 +624,12 @@ body {
 }
 
 #cake-making h1 {
-
     margin: 0;
 
     color: #8d4961;
 }
 
 #cake-instructions {
-
     margin: 5px 0 8px;
 
     color: #754454;
@@ -693,7 +641,6 @@ body {
 ========================= */
 
 #cake-requirements {
-
     position: absolute;
 
     top: 15px;
@@ -718,7 +665,6 @@ body {
 }
 
 #cake-requirements h2 {
-
     margin: 0 0 7px;
 
     color: #8d4961;
@@ -727,7 +673,6 @@ body {
 }
 
 #cake-requirements div {
-
     display: flex;
 
     justify-content: space-between;
@@ -736,25 +681,19 @@ body {
 }
 
 #cake-requirements span {
-
     font-weight: bold;
 }
 
-
-/* Completed cake ingredients */
-
 .cake-complete {
-
     opacity: 0.45;
 }
 
 
 /* =========================
-   SIMPLE BOWL
+   BOWL
 ========================= */
 
 #bowl-area {
-
     position: relative;
 
     width: 330px;
@@ -767,7 +706,6 @@ body {
 }
 
 #bowl {
-
     width: 260px;
     height: 125px;
 
@@ -787,7 +725,6 @@ body {
 ========================= */
 
 #drag-ingredients {
-
     position: absolute;
 
     left: 20px;
@@ -808,7 +745,6 @@ body {
 }
 
 .draggable-ingredient {
-
     width: 65px;
     height: 65px;
 
@@ -818,11 +754,12 @@ body {
 
     user-select: none;
 
+    -webkit-user-select: none;
+
     touch-action: none;
 }
 
 .draggable-ingredient:active {
-
     cursor: grabbing;
 }
 
@@ -832,7 +769,6 @@ body {
 ========================= */
 
 .dragging-ingredient {
-
     position: fixed !important;
 
     z-index: 1000;
@@ -848,45 +784,43 @@ body {
 ========================= */
 
 #final-screen {
-
     background: #ffe4ed;
+
+    flex-direction: column;
 
     text-align: center;
 
     padding: 20px;
 
-    flex-direction: column;
+    overflow: hidden;
 }
 
 #final-message {
+    width: 100%;
 
     max-width: 650px;
+
+    text-align: center;
 }
 
 #final-message h1 {
-
     color: #8d4961;
 
     font-size: 30px;
 
-    margin-bottom: 25px;
+    line-height: 1.25;
+
+    margin: 0 0 25px;
 }
 
 #final-message img {
-
     width: 300px;
 
     max-width: 80vw;
+
+    height: auto;
 }
 
-
-/* =========================
-   SMALL SCREENS
-========================= */
-
-/* =========================
-   MOBILE
-========================= */
 
 /* =========================
    MOBILE
@@ -894,19 +828,20 @@ body {
 
 @media (max-width: 600px) {
 
-    /* ---------- GENERAL MOBILE ---------- */
-
     html,
     body {
         width: 100%;
         height: 100%;
+
         overflow: hidden;
     }
 
     .screen {
         width: 100vw;
         height: 100dvh;
+
         min-height: 0;
+
         overflow: hidden;
     }
 
@@ -924,6 +859,7 @@ body {
     #catch-instruction-box {
         width: 90vw;
         max-width: 90vw;
+
         padding: 25px 20px;
     }
 
@@ -945,35 +881,43 @@ body {
     #catch-game {
         width: 100vw;
         height: 100dvh;
+
         overflow: hidden;
     }
 
     #game-area {
         width: 100vw;
         height: 100dvh;
+
         overflow: hidden;
     }
 
-    /* Ingredient list */
-
     #list-container {
         width: 135px;
+
         right: 8px;
         top: 8px;
+
         max-height: calc(100dvh - 16px);
+
         overflow: hidden;
     }
 
     #collection-progress {
         margin-top: 5px;
+
         padding: 6px 7px;
+
         font-size: 10px;
+
         line-height: 1.1;
     }
 
     #collection-progress div {
         min-height: 29px;
+
         gap: 3px;
+
         padding: 1px 2px;
     }
 
@@ -987,12 +931,14 @@ body {
     }
 
 
-    /* Strikes */
+    /* ---------- STRIKES ---------- */
 
     #strike-display {
         left: 8px;
         top: 55px;
+
         min-width: 100px;
+
         padding: 7px 10px;
     }
 
@@ -1009,7 +955,7 @@ body {
     }
 
 
-    /* Falling ingredients */
+    /* ---------- FALLING INGREDIENTS ---------- */
 
     .falling-ingredient {
         width: 50px;
@@ -1017,24 +963,27 @@ body {
     }
 
 
-    /* Berry */
+    /* ---------- BERRY ---------- */
 
     #berry {
         width: 80px;
+
         bottom: 80px;
     }
 
 
-    /* Touch controls */
+    /* ---------- TOUCH CONTROLS ---------- */
 
     #touch-controls {
         bottom: 12px;
+
         gap: 15px;
     }
 
     #touch-controls button {
         width: 65px;
         height: 50px;
+
         font-size: 27px;
     }
 
@@ -1048,43 +997,51 @@ body {
     #cake-making {
         width: 100vw;
         height: 100dvh;
+
         min-height: 0;
+
         padding-top: 8px;
+
         overflow: hidden;
 
-        /* Important: keep everything inside the screen */
         display: flex;
+
         flex-direction: column;
+
         justify-content: flex-start;
     }
 
     #cake-making h1 {
         flex-shrink: 0;
+
         font-size: 22px;
+
         margin: 0;
     }
 
     #cake-instructions {
         flex-shrink: 0;
+
         width: 90vw;
         max-width: 90vw;
+
         margin: 4px auto 4px;
+
         padding: 0;
+
         font-size: 13px;
+
         line-height: 1.25;
+
         text-align: center;
     }
 
 
-    /* Cake requirements */
+    /* ---------- CAKE REQUIREMENTS ---------- */
 
     #cake-requirements {
-        /*
-           IMPORTANT:
-           It is no longer positioned on top of the instructions.
-           It takes up its own space underneath them.
-        */
         position: relative;
+
         top: auto;
         right: auto;
 
@@ -1093,10 +1050,12 @@ body {
         width: 90vw;
         max-width: 90vw;
 
-        margin: 3px auto 3px;
+        margin: 3px auto;
+
         padding: 5px 8px;
 
         font-size: 10px;
+
         line-height: 1.15;
 
         z-index: 1;
@@ -1104,6 +1063,7 @@ body {
 
     #cake-requirements h2 {
         margin: 0 0 3px;
+
         font-size: 13px;
     }
 
@@ -1112,7 +1072,7 @@ body {
     }
 
 
-    /* Bowl */
+    /* ---------- BOWL ---------- */
 
     #bowl-area {
         flex-shrink: 0;
@@ -1123,6 +1083,7 @@ body {
         margin: 0 auto;
 
         display: flex;
+
         justify-content: center;
         align-items: center;
     }
@@ -1133,7 +1094,7 @@ body {
     }
 
 
-    /* Ingredients at bottom */
+    /* ---------- CAKE INGREDIENTS ---------- */
 
     #drag-ingredients {
         position: relative;
@@ -1152,7 +1113,9 @@ body {
         margin: 2px auto 0;
 
         display: flex;
+
         flex-wrap: wrap;
+
         justify-content: center;
         align-items: center;
 
@@ -1165,41 +1128,57 @@ body {
         width: 45px;
         height: 45px;
     }
-/* ---------- FINAL SCREEN ---------- */
 
-#final-screen {
-    width: 100vw;
-    height: 100dvh;
-    min-height: 0;
 
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    /* ---------- FINAL SCREEN ---------- */
 
-    overflow: hidden;
+    #final-screen {
+        width: 100vw;
+        height: 100dvh;
 
-    padding: 20px;
-    box-sizing: border-box;
-}
+        min-height: 0;
 
-#final-message {
-    width: 90vw;
-    max-width: 650px;
+        flex-direction: column;
 
-    text-align: center;
-}
+        align-items: center;
+        justify-content: center;
 
-#final-message h1 {
-    font-size: 23px;
-    line-height: 1.25;
+        padding: 20px;
 
-    margin: 0 0 15px;
-}
+        overflow: hidden;
+    }
 
-#final-message img {
-    width: 250px;
-    max-width: 75vw;
-    height: auto;
-}
+    /*
+       IMPORTANT:
+       This guarantees that the final screen
+       becomes visible when it has the active class.
+    */
+
+    #final-screen.active {
+        display: flex !important;
+    }
+
+    #final-message {
+        width: 90vw;
+        max-width: 650px;
+
+        text-align: center;
+    }
+
+    #final-message h1 {
+        font-size: 23px;
+
+        line-height: 1.25;
+
+        margin: 0 0 15px;
+    }
+
+    #final-message img {
+        width: 250px;
+
+        max-width: 75vw;
+
+        height: auto;
+    }
 
 }
