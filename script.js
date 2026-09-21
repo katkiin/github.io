@@ -1695,7 +1695,8 @@ function stopDragging(event) {
 
 if (finished) {
 
-    showScreen("final-screen");
+    console.log("FINISHED IS TRUE");
+showScreen("final-screen");
 
     setTimeout(function() {
         sendGameSession();
