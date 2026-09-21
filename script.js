@@ -1,6 +1,6 @@
 console.log("SCRIPT LOADED");
 
-showScreen("final-screen");
+
 /* ==================================================
    GAME SESSION TRACKING
 ================================================== */
@@ -9,7 +9,6 @@ const API_URL =
     "https://berry-cake-api.sak089536.workers.dev/log";
 
 let gameStartTime = null;
-
 let gameAttempt = 0;
 
 
@@ -19,8 +18,7 @@ let gameAttempt = 0;
 
 function startGameSession() {
 
-    gameStartTime =
-        new Date();
+    gameStartTime = new Date();
 
     gameAttempt++;
 
@@ -34,68 +32,56 @@ function startGameSession() {
 async function sendGameSession() {
 
     if (!gameStartTime) {
-
         return;
-
     }
 
-
-    const completedAt =
-        new Date();
-
+    const completedAt = new Date();
 
     const timeSeconds =
         (completedAt - gameStartTime) / 1000;
 
-
     try {
 
-        const response =
-            await fetch(
-                API_URL,
-                {
-                    method: "POST",
+        const response = await fetch(
+            API_URL,
+            {
+                method: "POST",
 
-                    headers: {
-                        "Content-Type":
-                            "application/json"
-                    },
+                headers: {
+                    "Content-Type": "application/json"
+                },
 
-                    body: JSON.stringify({
+                body: JSON.stringify({
 
-                        started_at:
-                            gameStartTime.toISOString(),
+                    started_at:
+                        gameStartTime.toISOString(),
 
-                        completed_at:
-                            completedAt.toISOString(),
+                    completed_at:
+                        completedAt.toISOString(),
 
-                        score:
-                            currentCatchIndex,
+                    score:
+                        currentCatchIndex,
 
-                        strikes:
-                            strikes,
+                    strikes:
+                        strikes,
 
-                        time_seconds:
-                            timeSeconds,
+                    time_seconds:
+                        timeSeconds,
 
-                        attempts:
-                            gameAttempt
+                    attempts:
+                        gameAttempt
 
-                    })
+                })
 
-                }
-            );
+            }
+        );
 
-
-        const data =
-            await response.json();
-
+        const data = await response.json();
 
         console.log(
             "Game session saved:",
             data
         );
-
 
     }
 
@@ -109,6 +95,7 @@ async function sendGameSession() {
     }
 
 }
+
 
 /* ==================================================
    SCREEN SWITCHING
@@ -125,9 +112,15 @@ function showScreen(screenId) {
 
     });
 
-    document
-        .getElementById(screenId)
-        .classList.add("active");
+    const targetScreen =
+        document.getElementById(screenId);
+
+    if (targetScreen) {
+
+        targetScreen.classList.add("active");
+
+    }
+
 }
 
 
@@ -219,19 +212,6 @@ const needed = {
    RECIPE ORDER
 ================================================== */
 
-/*
-   The player must catch:
-
-   3 frosting
-   4 strawberries
-   2 butter
-   1 sugar
-   3 eggs
-   1 milk
-   2 flour
-   2 oil
-*/
-
 let catchOrder = [];
 
 ingredientTypes.forEach(
@@ -258,19 +238,12 @@ ingredientTypes.forEach(
 let collected = {
 
     frosting: 0,
-
     strawberry: 0,
-
     butter: 0,
-
     sugar: 0,
-
     egg: 0,
-
     milk: 0,
-
     flour: 0,
-
     oil: 0
 
 };
@@ -297,9 +270,7 @@ document
 ================================================== */
 
 document
-    .getElementById(
-        "start-catching-button"
-    )
+    .getElementById("start-catching-button")
     .addEventListener(
         "click",
         function() {
@@ -331,7 +302,6 @@ let moveSpeed = 7;
 let keys = {
 
     left: false,
-
     right: false
 
 };
@@ -369,19 +339,12 @@ function startCatchGame() {
     collected = {
 
         frosting: 0,
-
         strawberry: 0,
-
         butter: 0,
-
         sugar: 0,
-
         egg: 0,
-
         milk: 0,
-
         flour: 0,
-
         oil: 0
 
     };
@@ -433,9 +396,7 @@ function startCatchGame() {
 function startCountdown() {
 
     const countdown =
-        document.getElementById(
-            "countdown"
-        );
+        document.getElementById("countdown");
 
     let number = 3;
 
@@ -482,6 +443,7 @@ function startCountdown() {
             }
 
         }, 1000);
+
 }
 
 
@@ -500,20 +462,11 @@ function createFallingIngredient() {
         catchOrder[currentCatchIndex];
 
 
-    /*
-       Create the ingredient the player
-       actually needs.
-    */
-
     createFallingObject(
         targetType,
         true
     );
 
-
-    /*
-       Find possible wrong ingredients.
-    */
 
     let wrongTypes =
         ingredientTypes.filter(
@@ -525,10 +478,6 @@ function createFallingIngredient() {
         );
 
 
-    /*
-       Shuffle the possible wrong ingredients.
-    */
-
     wrongTypes =
         wrongTypes.sort(
             function() {
@@ -538,11 +487,6 @@ function createFallingIngredient() {
             }
         );
 
-
-    /*
-       Desktop = 5 wrong ingredients (6 total)
-       Mobile = 2 wrong ingredients (3 total)
-    */
 
     const wrongIngredientCount =
         window.innerWidth <= 600 ? 2 : 5;
@@ -596,52 +540,49 @@ function createFallingObject(
         isTarget ? "true" : "false";
 
 
-    /*
-       Keep ingredients to the left of
-       the ingredient list.
-    */
-
     const listWidth = 250;
 
     const playWidth =
         Math.max(
             350,
-            window.innerWidth -
-            listWidth
+            window.innerWidth - listWidth
         );
 
 
     const maxX =
-        playWidth -
-        75;
+        playWidth - 75;
 
 
     let x;
-let tries = 0;
 
-do {
+    let tries = 0;
 
-    x =
-        Math.max(
-            15,
-            Math.random() * maxX
-        );
 
-    tries++;
+    do {
 
-} while (
-    fallingObjects.some(function(object) {
+        x =
+            Math.max(
+                15,
+                Math.random() * maxX
+            );
 
-        return Math.abs(object.posX - x) < 100;
+        tries++;
 
-    }) &&
-    tries < 20
-);
+    }
 
-    /*
-       Start ingredients above the screen
-       at slightly different heights.
-    */
+    while (
+        fallingObjects.some(
+            function(object) {
+
+                return Math.abs(
+                    object.posX - x
+                ) < 100;
+
+            }
+        ) &&
+        tries < 20
+    );
+
 
     const y =
         -100 -
@@ -705,7 +646,6 @@ function startGameLoop() {
             checkCollisions();
 
             checkMissedTarget();
-
 
         }, 16);
 
@@ -823,14 +763,10 @@ document.addEventListener(
 ================================================== */
 
 const leftButton =
-    document.getElementById(
-        "left-button"
-    );
+    document.getElementById("left-button");
 
 const rightButton =
-    document.getElementById(
-        "right-button"
-    );
+    document.getElementById("right-button");
 
 
 leftButton.addEventListener(
@@ -860,6 +796,7 @@ rightButton.addEventListener(
     }
 );
 
+
 /* ==================================================
    MOVE INGREDIENTS
 ================================================== */
@@ -871,7 +808,6 @@ function moveIngredients() {
 
             object.posY +=
                 object.speed;
-
 
             object.element.style.top =
                 object.posY + "px";
@@ -903,11 +839,6 @@ function checkMissedTarget() {
             window.innerHeight
         ) {
 
-            /*
-               Missing the required ingredient
-               gives a strike.
-            */
-
             if (
                 object.type ===
                 catchOrder[currentCatchIndex]
@@ -930,12 +861,6 @@ function checkMissedTarget() {
             }
 
             else {
-
-                /*
-                   Wrong ingredients that fall
-                   past the screen do not count
-                   as missed targets.
-                */
 
                 object.element.remove();
 
@@ -978,21 +903,25 @@ function checkCollisions() {
                 .getBoundingClientRect();
 
 
-       const collision = (
+        const collision = (
 
-    berryRect.left + berryRect.width * 0.25 <
-    ingredientRect.right &&
+            berryRect.left +
+                berryRect.width * 0.25 <
+            ingredientRect.right &&
 
-    berryRect.right - berryRect.width * 0.25 >
-    ingredientRect.left &&
+            berryRect.right -
+                berryRect.width * 0.25 >
+            ingredientRect.left &&
 
-    berryRect.top + berryRect.height * 0.25 <
-    ingredientRect.bottom &&
+            berryRect.top +
+                berryRect.height * 0.25 <
+            ingredientRect.bottom &&
 
-    berryRect.bottom - berryRect.height * 0.25 >
-    ingredientRect.top
+            berryRect.bottom -
+                berryRect.height * 0.25 >
+            ingredientRect.top
 
-);
+        );
 
 
         if (collision) {
@@ -1001,9 +930,7 @@ function checkCollisions() {
                 object.type;
 
 
-            /*
-               CORRECT INGREDIENT
-            */
+            /* CORRECT INGREDIENT */
 
             if (
                 type ===
@@ -1028,11 +955,6 @@ function checkCollisions() {
                 );
 
 
-                /*
-                   Check whether everything
-                   has been collected.
-                */
-
                 if (
                     currentCatchIndex >=
                     catchOrder.length
@@ -1045,10 +967,6 @@ function checkCollisions() {
                 }
 
 
-                /*
-                   Start the next ingredient.
-                */
-
                 createFallingIngredient();
 
                 return;
@@ -1056,16 +974,9 @@ function checkCollisions() {
             }
 
 
-            /*
-               WRONG INGREDIENT
-            */
+            /* WRONG INGREDIENT */
 
             else {
-
-                /*
-                   Catching the wrong ingredient
-                   ALWAYS gives a strike.
-                */
 
                 addStrike();
 
@@ -1104,10 +1015,6 @@ function addStrike() {
     updateStrikeDisplay();
 
 
-    /*
-       Three strikes means the player loses.
-    */
-
     if (
         strikes >= MAX_STRIKES
     ) {
@@ -1126,9 +1033,7 @@ function addStrike() {
 function updateStrikeDisplay() {
 
     document
-        .getElementById(
-            "strike-count"
-        )
+        .getElementById("strike-count")
         .textContent =
             strikes;
 
@@ -1155,9 +1060,7 @@ function loseGame() {
 
 
     document
-        .getElementById(
-            "pause-overlay"
-        )
+        .getElementById("pause-overlay")
         .classList.remove("active");
 
 
@@ -1285,9 +1188,7 @@ function finishCatchGame() {
 
 
     document
-        .getElementById(
-            "final-strikes"
-        )
+        .getElementById("final-strikes")
         .textContent =
             "Strikes: " +
             strikes;
@@ -1354,9 +1255,7 @@ document
 ================================================== */
 
 document
-    .getElementById(
-        "finished-next-button"
-    )
+    .getElementById("finished-next-button")
     .addEventListener(
         "click",
         function() {
@@ -1374,19 +1273,12 @@ document
 let cakeProgress = {
 
     frosting: 0,
-
     strawberry: 0,
-
     butter: 0,
-
     sugar: 0,
-
     egg: 0,
-
     milk: 0,
-
     flour: 0,
-
     oil: 0
 
 };
@@ -1417,19 +1309,12 @@ function startCakeMaking() {
     cakeProgress = {
 
         frosting: 0,
-
         strawberry: 0,
-
         butter: 0,
-
         sugar: 0,
-
         egg: 0,
-
         milk: 0,
-
         flour: 0,
-
         oil: 0
 
     };
@@ -1437,10 +1322,6 @@ function startCakeMaking() {
 
     updateCakeProgress();
 
-
-    /*
-       ONE image for each ingredient.
-    */
 
     for (
         let type of ingredientTypes
@@ -1525,10 +1406,8 @@ function startDragging(event) {
     draggedIngredient.style.position =
         "fixed";
 
-
     draggedIngredient.style.zIndex =
         "1000";
-
 
     draggedIngredient.style.pointerEvents =
         "none";
@@ -1604,12 +1483,16 @@ function stopDragging(event) {
     }
 
 
+    const ingredient =
+        draggedIngredient;
+
+
     const bowl =
         document.getElementById("bowl");
 
 
     const ingredientRect =
-        draggedIngredient.getBoundingClientRect();
+        ingredient.getBoundingClientRect();
 
 
     const bowlRect =
@@ -1634,12 +1517,27 @@ function stopDragging(event) {
 
 
     const type =
-        draggedIngredient.dataset.type;
+        ingredient.dataset.type;
 
 
-    let finished = false;
+    /* Stop dragging listeners */
 
-if (overlapping) {
+    document.removeEventListener(
+        "pointermove",
+        dragIngredient
+    );
+
+    document.removeEventListener(
+        "pointerup",
+        stopDragging
+    );
+
+
+    /* ==========================================
+       INGREDIENT WAS DROPPED INTO BOWL
+    ========================================== */
+
+    if (overlapping) {
 
         cakeProgress[type]++;
 
@@ -1653,32 +1551,74 @@ if (overlapping) {
 
         if (remaining <= 0) {
 
-            draggedIngredient.remove();
+            ingredient.remove();
 
         }
 
         else {
+
+            draggedIngredient =
+                ingredient;
 
             resetDraggedIngredient();
 
         }
 
 
-     if (cakeMakingFinished()) {
+        /*
+           CHECK FOR COMPLETE CAKE
+        */
 
-    console.log("CAKE IS FINISHED");
+        if (cakeMakingFinished()) {
 
-    showScreen("final-screen");
+            console.log(
+                "CAKE COMPLETE!"
+            );
 
-    setTimeout(function() {
-        sendGameSession();
-    }, 100);
 
-    return;
+            draggedIngredient = null;
 
-}  
+
+            showScreen(
+                "final-screen"
+            );
+
+
+            setTimeout(
+                function() {
+
+                    sendGameSession();
+
+                },
+                100
+            );
+
+
+            return;
+
+        }
 
     }
+
+
+    /* ==========================================
+       INGREDIENT MISSED THE BOWL
+    ========================================== */
+
+    else {
+
+        draggedIngredient =
+            ingredient;
+
+        resetDraggedIngredient();
+
+    }
+
+
+    draggedIngredient = null;
+
+}
+
 
 /* ==================================================
    RESET DRAGGED INGREDIENT
@@ -1785,7 +1725,7 @@ function cakeMakingFinished() {
 
     }
 
-    return true;
-}
 
-showScreen("final-screen");
+    return true;
+
+}
