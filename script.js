@@ -1,4 +1,113 @@
 /* ==================================================
+   GAME SESSION TRACKING
+================================================== */
+
+const API_URL =
+    "https://berry-cake-api.sak089536.workers.dev/log";
+
+let gameStartTime = null;
+
+let gameAttempt = 0;
+
+
+/* ==================================================
+   START GAME SESSION
+================================================== */
+
+function startGameSession() {
+
+    gameStartTime =
+        new Date();
+
+    gameAttempt++;
+
+}
+
+
+/* ==================================================
+   SEND GAME SESSION
+================================================== */
+
+async function sendGameSession() {
+
+    if (!gameStartTime) {
+
+        return;
+
+    }
+
+
+    const completedAt =
+        new Date();
+
+
+    const timeSeconds =
+        (completedAt - gameStartTime) / 1000;
+
+
+    try {
+
+        const response =
+            await fetch(
+                API_URL,
+                {
+                    method: "POST",
+
+                    headers: {
+                        "Content-Type":
+                            "application/json"
+                    },
+
+                    body: JSON.stringify({
+
+                        started_at:
+                            gameStartTime.toISOString(),
+
+                        completed_at:
+                            completedAt.toISOString(),
+
+                        score:
+                            currentCatchIndex,
+
+                        strikes:
+                            strikes,
+
+                        time_seconds:
+                            timeSeconds,
+
+                        attempts:
+                            gameAttempt
+
+                    })
+
+                }
+            );
+
+
+        const data =
+            await response.json();
+
+
+        console.log(
+            "Game session saved:",
+            data
+        );
+
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "Could not save game session:",
+            error
+        );
+
+    }
+
+}
+
+/* ==================================================
    SCREEN SWITCHING
 ================================================== */
 
@@ -244,6 +353,8 @@ const MAX_STRIKES = 3;
 ================================================== */
 
 function startCatchGame() {
+
+    startGameSession();
 
     clearInterval(gameInterval);
 
@@ -1049,6 +1160,8 @@ function loseGame() {
 
     gameRunning = false;
 
+    sendGameSession();
+
     gamePaused = false;
 
     clearInterval(gameInterval);
@@ -1570,22 +1683,24 @@ function stopDragging(event) {
         }
 
 
-        if (
-            cakeMakingFinished()
-        ) {
+       if (
+    cakeMakingFinished()
+) {
 
-            setTimeout(
-                function() {
+    sendGameSession();
 
-                    showScreen(
-                        "final-screen"
-                    );
+    setTimeout(
+        function() {
 
-                },
-                500
+            showScreen(
+                "final-screen"
             );
 
-        }
+        },
+        500
+    );
+
+}
 
     }
 
