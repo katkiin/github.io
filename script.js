@@ -1680,40 +1680,6 @@ if (overlapping) {
 
     }
 
-    else {
-
-        resetDraggedIngredient();
-
-    }
-
-
-    document.removeEventListener(
-        "pointermove",
-        dragIngredient
-    );
-
-
-    document.removeEventListener(
-        "pointerup",
-        stopDragging
-    );
-
-
-    draggedIngredient = null;
-
-if (finished) {
-
-    console.log("FINISHED IS TRUE");
-showScreen("final-screen");
-
-    setTimeout(function() {
-        sendGameSession();
-    }, 100);
-
-}
-   
-}
-
 /* ==================================================
    RESET DRAGGED INGREDIENT
 ================================================== */
