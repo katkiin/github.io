@@ -1639,8 +1639,7 @@ function stopDragging(event) {
 
     let finished = false;
 
-
-    if (overlapping) {
+if (overlapping) {
 
         cakeProgress[type]++;
 
@@ -1665,11 +1664,19 @@ function stopDragging(event) {
         }
 
 
-        if (cakeMakingFinished()) {
+     if (cakeMakingFinished()) {
 
-            finished = true;
+    console.log("CAKE IS FINISHED");
 
-        }
+    showScreen("final-screen");
+
+    setTimeout(function() {
+        sendGameSession();
+    }, 100);
+
+    return;
+
+}  
 
     }
 
