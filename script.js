@@ -1,9 +1,3 @@
-document.addEventListener("DOMContentLoaded", function() {
-
-    // ALL of your current JavaScript goes here
-
-});
-
 /* ==================================================
    GAME SESSION TRACKING
 ================================================== */
@@ -1816,5 +1810,3 @@ function cakeMakingFinished() {
 
     return true;
 }
-
-});
