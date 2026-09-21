@@ -1663,22 +1663,11 @@ function stopDragging(event) {
         }
 
 
-       if (
-    cakeMakingFinished()
-) {
+ if (cakeMakingFinished()) {
+
+    showScreen("final-screen");
 
     sendGameSession();
-
-    setTimeout(
-        function() {
-
-            showScreen(
-                "final-screen"
-            );
-
-        },
-        500
-    );
 
 }
 
