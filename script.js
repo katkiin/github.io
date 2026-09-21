@@ -615,12 +615,27 @@ function createFallingObject(
         75;
 
 
-    const x =
+    let x;
+let tries = 0;
+
+do {
+
+    x =
         Math.max(
             15,
             Math.random() * maxX
         );
 
+    tries++;
+
+} while (
+    fallingObjects.some(function(object) {
+
+        return Math.abs(object.posX - x) < 100;
+
+    }) &&
+    tries < 20
+);
 
     /*
        Start ingredients above the screen
