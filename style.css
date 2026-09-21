@@ -888,21 +888,30 @@ body {
    MOBILE
 ========================= */
 
+/* =========================
+   MOBILE
+========================= */
+
 @media (max-width: 600px) {
 
-    /* =========================
-       GENERAL MOBILE
-    ========================= */
+    /* ---------- GENERAL MOBILE ---------- */
+
+    html,
+    body {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+    }
 
     .screen {
         width: 100vw;
         height: 100dvh;
+        min-height: 0;
+        overflow: hidden;
     }
 
 
-    /* =========================
-       INTRO
-    ========================= */
+    /* ---------- INTRO ---------- */
 
     .message-container {
         width: 90vw;
@@ -910,12 +919,11 @@ body {
     }
 
 
-    /* =========================
-       CATCHING INSTRUCTIONS
-    ========================= */
+    /* ---------- CATCHING INSTRUCTIONS ---------- */
 
     #catch-instruction-box {
         width: 90vw;
+        max-width: 90vw;
         padding: 25px 20px;
     }
 
@@ -932,53 +940,54 @@ body {
     }
 
 
-    /* =========================
-       CATCHING GAME
-    ========================= */
+    /* ---------- CATCHING GAME ---------- */
 
     #catch-game {
         width: 100vw;
         height: 100dvh;
+        overflow: hidden;
     }
 
     #game-area {
         width: 100vw;
         height: 100dvh;
+        overflow: hidden;
     }
 
-
-    /* =========================
-       INGREDIENT LIST
-    ========================= */
+    /* Ingredient list */
 
     #list-container {
         width: 135px;
         right: 8px;
         top: 8px;
+        max-height: calc(100dvh - 16px);
+        overflow: hidden;
     }
 
     #collection-progress {
         margin-top: 5px;
-        padding: 7px 8px;
+        padding: 6px 7px;
         font-size: 10px;
-        line-height: 1.2;
+        line-height: 1.1;
     }
 
     #collection-progress div {
-        min-height: 30px;
-        gap: 4px;
-        padding: 2px;
+        min-height: 29px;
+        gap: 3px;
+        padding: 1px 2px;
     }
 
     #collection-progress img {
-        width: 27px;
-        height: 27px;
+        width: 25px;
+        height: 25px;
+    }
+
+    #collection-progress span {
+        margin-left: auto;
     }
 
 
-    /* =========================
-       STRIKES
-    ========================= */
+    /* Strikes */
 
     #strike-display {
         left: 8px;
@@ -1000,9 +1009,7 @@ body {
     }
 
 
-    /* =========================
-       FALLING INGREDIENTS
-    ========================= */
+    /* Falling ingredients */
 
     .falling-ingredient {
         width: 50px;
@@ -1010,22 +1017,18 @@ body {
     }
 
 
-    /* =========================
-       BERRY
-    ========================= */
+    /* Berry */
 
     #berry {
         width: 80px;
-        bottom: 85px;
+        bottom: 80px;
     }
 
 
-    /* =========================
-       TOUCH CONTROLS
-    ========================= */
+    /* Touch controls */
 
     #touch-controls {
-        bottom: 18px;
+        bottom: 12px;
         gap: 15px;
     }
 
@@ -1035,109 +1038,102 @@ body {
         font-size: 27px;
     }
 
-
-    /* =========================
-       MOVEMENT HELP
-    ========================= */
-
     #movement-help {
         display: none;
     }
 
 
-    /* =========================
-       CAKE MAKING
-    ========================= */
+    /* ---------- CAKE MAKING ---------- */
 
     #cake-making {
         width: 100vw;
         height: 100dvh;
-
-        padding-top: 10px;
-
+        min-height: 0;
+        padding-top: 8px;
         overflow: hidden;
 
+        /* Important: keep everything inside the screen */
+        display: flex;
+        flex-direction: column;
         justify-content: flex-start;
     }
 
     #cake-making h1 {
-        font-size: 23px;
-        margin-top: 0;
+        flex-shrink: 0;
+        font-size: 22px;
+        margin: 0;
     }
 
-
-    /* =========================
-       CAKE INSTRUCTIONS
-    ========================= */
-
     #cake-instructions {
+        flex-shrink: 0;
         width: 90vw;
         max-width: 90vw;
-
-        margin: 5px auto 5px;
-
-        padding: 0 5px;
-
-        font-size: 14px;
-
-        line-height: 1.3;
-
+        margin: 4px auto 4px;
+        padding: 0;
+        font-size: 13px;
+        line-height: 1.25;
         text-align: center;
     }
 
 
-    /* =========================
-       CAKE REQUIREMENTS
-    ========================= */
+    /* Cake requirements */
 
     #cake-requirements {
+        /*
+           IMPORTANT:
+           It is no longer positioned on top of the instructions.
+           It takes up its own space underneath them.
+        */
         position: relative;
-
         top: auto;
         right: auto;
 
+        flex-shrink: 0;
+
         width: 90vw;
+        max-width: 90vw;
 
-        margin: 5px auto;
+        margin: 3px auto 3px;
+        padding: 5px 8px;
 
-        padding: 7px 10px;
+        font-size: 10px;
+        line-height: 1.15;
 
-        font-size: 11px;
-
-        z-index: 10;
+        z-index: 1;
     }
 
     #cake-requirements h2 {
-        margin: 0 0 4px;
-
-        font-size: 14px;
+        margin: 0 0 3px;
+        font-size: 13px;
     }
 
     #cake-requirements div {
-        line-height: 1.25;
+        line-height: 1.2;
     }
 
 
-    /* =========================
-       BOWL
-    ========================= */
+    /* Bowl */
 
     #bowl-area {
-        width: 280px;
-        height: 180px;
-
         flex-shrink: 0;
+
+        width: 240px;
+        height: 145px;
+
+        margin: 0 auto;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
     #bowl {
-        width: 220px;
-        height: 105px;
+        width: 190px;
+        height: 90px;
     }
 
 
-    /* =========================
-       CAKE INGREDIENTS
-    ========================= */
+    /* Ingredients at bottom */
 
     #drag-ingredients {
         position: relative;
@@ -1146,25 +1142,32 @@ body {
         right: auto;
         bottom: auto;
 
+        flex-shrink: 0;
+
         width: 90vw;
         max-width: 90vw;
 
-        max-height: 125px;
+        max-height: 115px;
 
-        margin-top: 5px;
+        margin: 2px auto 0;
 
-        gap: 6px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+
+        gap: 4px;
+
+        overflow: hidden;
     }
 
     .draggable-ingredient {
-        width: 48px;
-        height: 48px;
+        width: 45px;
+        height: 45px;
     }
 
 
-    /* =========================
-       FINAL SCREEN
-    ========================= */
+    /* ---------- FINAL SCREEN ---------- */
 
     #final-message h1 {
         font-size: 23px;
@@ -1174,5 +1177,4 @@ body {
         width: 250px;
         max-width: 80vw;
     }
-
 }
