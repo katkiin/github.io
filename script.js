@@ -1,7 +1,3 @@
-```javascript
-console.log("SCRIPT LOADED");
-
-
 /* ==================================================
    GAME SESSION TRACKING
 ================================================== */
@@ -10,6 +6,7 @@ const API_URL =
     "https://berry-cake-api.sak089536.workers.dev/log";
 
 let gameStartTime = null;
+
 let gameAttempt = 0;
 
 
@@ -19,7 +16,8 @@ let gameAttempt = 0;
 
 function startGameSession() {
 
-    gameStartTime = new Date();
+    gameStartTime =
+        new Date();
 
     gameAttempt++;
 
@@ -33,51 +31,59 @@ function startGameSession() {
 async function sendGameSession() {
 
     if (!gameStartTime) {
+
         return;
+
     }
 
-    const completedAt = new Date();
+    const completedAt =
+        new Date();
 
     const timeSeconds =
         (completedAt - gameStartTime) / 1000;
 
     try {
 
-        const response = await fetch(
-            API_URL,
-            {
-                method: "POST",
+        const response =
+            await fetch(
+                API_URL,
+                {
+                    method: "POST",
 
-                headers: {
-                    "Content-Type": "application/json"
-                },
+                    headers: {
+                        "Content-Type":
+                            "application/json"
+                    },
 
-                body: JSON.stringify({
+                    body: JSON.stringify({
 
-                    started_at:
-                        gameStartTime.toISOString(),
+                        started_at:
+                            gameStartTime.toISOString(),
 
-                    completed_at:
-                        completedAt.toISOString(),
+                        completed_at:
+                            completedAt.toISOString(),
 
-                    score:
-                        currentCatchIndex,
+                        score:
+                            currentCatchIndex,
 
-                    strikes:
-                        strikes,
+                        strikes:
+                            strikes,
 
-                    time_seconds:
-                        timeSeconds,
+                        time_seconds:
+                            timeSeconds,
 
-                    attempts:
-                        gameAttempt
+                        attempts:
+                            gameAttempt
 
-                })
+                    })
 
-            }
-        );
+                }
+            );
 
-        const data = await response.json();
+
+        const data =
+            await response.json();
+
 
         console.log(
             "Game session saved:",
@@ -107,20 +113,33 @@ function showScreen(screenId) {
     const screens =
         document.querySelectorAll(".screen");
 
-    screens.forEach(function(screen) {
 
-        screen.classList.remove("active");
+    screens.forEach(
+        function(screen) {
 
-    });
+            screen.classList.remove("active");
 
-    const targetScreen =
+        }
+    );
+
+
+    const target =
         document.getElementById(screenId);
 
-    if (targetScreen) {
 
-        targetScreen.classList.add("active");
+    if (!target) {
+
+        console.error(
+            "Screen not found:",
+            screenId
+        );
+
+        return;
 
     }
+
+
+    target.classList.add("active");
 
 }
 
@@ -215,6 +234,7 @@ const needed = {
 
 let catchOrder = [];
 
+
 ingredientTypes.forEach(
     function(type) {
 
@@ -239,12 +259,19 @@ ingredientTypes.forEach(
 let collected = {
 
     frosting: 0,
+
     strawberry: 0,
+
     butter: 0,
+
     sugar: 0,
+
     egg: 0,
+
     milk: 0,
+
     flour: 0,
+
     oil: 0
 
 };
@@ -291,21 +318,26 @@ document
 const berry =
     document.getElementById("berry");
 
+
 const fallingContainer =
     document.getElementById(
         "falling-ingredients"
     );
 
+
 let berryX = 0;
 
 let moveSpeed = 7;
 
+
 let keys = {
 
     left: false,
+
     right: false
 
 };
+
 
 let gameRunning = false;
 
@@ -330,7 +362,9 @@ function startCatchGame() {
 
     startGameSession();
 
+
     clearInterval(gameInterval);
+
 
     fallingContainer.innerHTML = "";
 
@@ -340,12 +374,19 @@ function startCatchGame() {
     collected = {
 
         frosting: 0,
+
         strawberry: 0,
+
         butter: 0,
+
         sugar: 0,
+
         egg: 0,
+
         milk: 0,
+
         flour: 0,
+
         oil: 0
 
     };
@@ -370,6 +411,7 @@ function startCatchGame() {
 
     berry.style.left =
         berryX + "px";
+
 
     berry.style.transform =
         "none";
@@ -397,53 +439,65 @@ function startCatchGame() {
 function startCountdown() {
 
     const countdown =
-        document.getElementById("countdown");
+        document.getElementById(
+            "countdown"
+        );
+
 
     let number = 3;
+
 
     countdown.textContent =
         number;
 
 
     const countdownTimer =
-        setInterval(function() {
+        setInterval(
+            function() {
 
-            number--;
-
-
-            if (number > 0) {
-
-                countdown.textContent =
-                    number;
-
-            }
-
-            else {
-
-                countdown.textContent =
-                    "GET READY!";
+                number--;
 
 
-                setTimeout(function() {
+                if (number > 0) {
 
-                    countdown.textContent = "";
+                    countdown.textContent =
+                        number;
 
-                    createFallingIngredient();
+                }
 
-                    gameRunning = true;
+                else {
 
-                    startGameLoop();
+                    countdown.textContent =
+                        "GET READY!";
 
-                }, 1800);
+
+                    setTimeout(
+                        function() {
+
+                            countdown.textContent =
+                                "";
+
+                            createFallingIngredient();
+
+                            gameRunning =
+                                true;
+
+                            startGameLoop();
+
+                        },
+                        1800
+                    );
 
 
-                clearInterval(
-                    countdownTimer
-                );
+                    clearInterval(
+                        countdownTimer
+                    );
 
-            }
+                }
 
-        }, 1000);
+            },
+            1000
+        );
 
 }
 
@@ -490,7 +544,9 @@ function createFallingIngredient() {
 
 
     const wrongIngredientCount =
-        window.innerWidth <= 600 ? 2 : 5;
+        window.innerWidth <= 600
+            ? 2
+            : 5;
 
 
     for (
@@ -531,22 +587,29 @@ function createFallingObject(
     ingredient.src =
         ingredientImages[type];
 
+
     ingredient.className =
         "falling-ingredient";
+
 
     ingredient.dataset.type =
         type;
 
+
     ingredient.dataset.target =
-        isTarget ? "true" : "false";
+        isTarget
+            ? "true"
+            : "false";
 
 
     const listWidth = 250;
 
+
     const playWidth =
         Math.max(
             350,
-            window.innerWidth - listWidth
+            window.innerWidth -
+            listWidth
         );
 
 
@@ -567,21 +630,30 @@ function createFallingObject(
                 Math.random() * maxX
             );
 
+
         tries++;
+
 
     }
 
     while (
+
         fallingObjects.some(
             function(object) {
 
-                return Math.abs(
-                    object.posX - x
-                ) < 100;
+                return (
+                    Math.abs(
+                        object.posX - x
+                    ) < 100
+                );
 
             }
-        ) &&
+        )
+
+        &&
+
         tries < 20
+
     );
 
 
@@ -592,6 +664,7 @@ function createFallingObject(
 
     ingredient.style.left =
         x + "px";
+
 
     ingredient.style.top =
         y + "px";
@@ -604,13 +677,17 @@ function createFallingObject(
 
     fallingObjects.push({
 
-        element: ingredient,
+        element:
+            ingredient,
 
-        type: type,
+        type:
+            type,
 
-        posX: x,
+        posX:
+            x,
 
-        posY: y,
+        posY:
+            y,
 
         speed:
             2.8 +
@@ -628,27 +705,30 @@ function createFallingObject(
 function startGameLoop() {
 
     gameInterval =
-        setInterval(function() {
+        setInterval(
+            function() {
 
-            if (
-                !gameRunning ||
-                gamePaused
-            ) {
+                if (
+                    !gameRunning ||
+                    gamePaused
+                ) {
 
-                return;
+                    return;
 
-            }
+                }
 
 
-            moveBerry();
+                moveBerry();
 
-            moveIngredients();
+                moveIngredients();
 
-            checkCollisions();
+                checkCollisions();
 
-            checkMissedTarget();
+                checkMissedTarget();
 
-        }, 16);
+            },
+            16
+        );
 
 }
 
@@ -694,6 +774,7 @@ function moveBerry() {
 
     berry.style.left =
         berryX + "px";
+
 
     berry.style.transform =
         "none";
@@ -764,10 +845,15 @@ document.addEventListener(
 ================================================== */
 
 const leftButton =
-    document.getElementById("left-button");
+    document.getElementById(
+        "left-button"
+    );
+
 
 const rightButton =
-    document.getElementById("right-button");
+    document.getElementById(
+        "right-button"
+    );
 
 
 leftButton.addEventListener(
@@ -809,6 +895,7 @@ function moveIngredients() {
 
             object.posY +=
                 object.speed;
+
 
             object.element.style.top =
                 object.posY + "px";
@@ -865,6 +952,7 @@ function checkMissedTarget() {
 
                 object.element.remove();
 
+
                 fallingObjects.splice(
                     i,
                     1
@@ -907,19 +995,29 @@ function checkCollisions() {
         const collision = (
 
             berryRect.left +
-                berryRect.width * 0.25 <
-            ingredientRect.right &&
+            berryRect.width * 0.25
+            <
+            ingredientRect.right
+
+            &&
 
             berryRect.right -
-                berryRect.width * 0.25 >
-            ingredientRect.left &&
+            berryRect.width * 0.25
+            >
+            ingredientRect.left
+
+            &&
 
             berryRect.top +
-                berryRect.height * 0.25 <
-            ingredientRect.bottom &&
+            berryRect.height * 0.25
+            <
+            ingredientRect.bottom
+
+            &&
 
             berryRect.bottom -
-                berryRect.height * 0.25 >
+            berryRect.height * 0.25
+            >
             ingredientRect.top
 
         );
@@ -949,6 +1047,7 @@ function checkCollisions() {
 
 
                 object.element.remove();
+
 
                 fallingObjects.splice(
                     i,
@@ -990,6 +1089,7 @@ function checkCollisions() {
 
 
                 object.element.remove();
+
 
                 fallingObjects.splice(
                     i,
@@ -1034,7 +1134,9 @@ function addStrike() {
 function updateStrikeDisplay() {
 
     document
-        .getElementById("strike-count")
+        .getElementById(
+            "strike-count"
+        )
         .textContent =
             strikes;
 
@@ -1055,13 +1157,16 @@ function loseGame() {
 
     clearInterval(gameInterval);
 
+
     fallingContainer.innerHTML = "";
 
     fallingObjects = [];
 
 
     document
-        .getElementById("pause-overlay")
+        .getElementById(
+            "pause-overlay"
+        )
         .classList.remove("active");
 
 
@@ -1189,7 +1294,9 @@ function finishCatchGame() {
 
 
     document
-        .getElementById("final-strikes")
+        .getElementById(
+            "final-strikes"
+        )
         .textContent =
             "Strikes: " +
             strikes;
@@ -1256,7 +1363,9 @@ document
 ================================================== */
 
 document
-    .getElementById("finished-next-button")
+    .getElementById(
+        "finished-next-button"
+    )
     .addEventListener(
         "click",
         function() {
@@ -1274,12 +1383,19 @@ document
 let cakeProgress = {
 
     frosting: 0,
+
     strawberry: 0,
+
     butter: 0,
+
     sugar: 0,
+
     egg: 0,
+
     milk: 0,
+
     flour: 0,
+
     oil: 0
 
 };
@@ -1310,12 +1426,19 @@ function startCakeMaking() {
     cakeProgress = {
 
         frosting: 0,
+
         strawberry: 0,
+
         butter: 0,
+
         sugar: 0,
+
         egg: 0,
+
         milk: 0,
+
         flour: 0,
+
         oil: 0
 
     };
@@ -1407,8 +1530,10 @@ function startDragging(event) {
     draggedIngredient.style.position =
         "fixed";
 
+
     draggedIngredient.style.zIndex =
         "1000";
+
 
     draggedIngredient.style.pointerEvents =
         "none";
@@ -1484,40 +1609,105 @@ function stopDragging(event) {
     }
 
 
-    const ingredient =
-        draggedIngredient;
-
     const bowl =
-        document.getElementById("bowl");
+        document.getElementById(
+            "bowl"
+        );
 
-    const type =
-        ingredient.dataset.type;
+
+    const ingredientRect =
+        draggedIngredient
+            .getBoundingClientRect();
 
 
     const bowlRect =
         bowl.getBoundingClientRect();
 
 
+    const overlapping = (
+
+        ingredientRect.left <
+        bowlRect.right
+
+        &&
+
+        ingredientRect.right >
+        bowlRect.left
+
+        &&
+
+        ingredientRect.top <
+        bowlRect.bottom
+
+        &&
+
+        ingredientRect.bottom >
+        bowlRect.top
+
+    );
+
+
+    const type =
+        draggedIngredient.dataset.type;
+
+
+    let finished = false;
+
+
+    if (overlapping) {
+
+        cakeProgress[type]++;
+
+
+        updateCakeProgress();
+
+
+        const remaining =
+            needed[type] -
+            cakeProgress[type];
+
+
+        if (remaining <= 0) {
+
+            draggedIngredient.remove();
+
+        }
+
+        else {
+
+            resetDraggedIngredient();
+
+        }
+
+
+        if (
+            cakeMakingFinished()
+        ) {
+
+            finished = true;
+
+        }
+
+    }
+
+    else {
+
+        resetDraggedIngredient();
+
+    }
+
+
     /*
-       MOBILE-FRIENDLY DROP DETECTION
-
-       Instead of requiring the whole ingredient
-       image to overlap the bowl, we check whether
-       the user's finger is inside the bowl when
-       they release the ingredient.
+       IMPORTANT:
+       Finish the pointer event completely
+       before changing screens.
     */
-
-    const droppedInBowl =
-        event.clientX >= bowlRect.left &&
-        event.clientX <= bowlRect.right &&
-        event.clientY >= bowlRect.top &&
-        event.clientY <= bowlRect.bottom;
-
 
     document.removeEventListener(
         "pointermove",
         dragIngredient
     );
+
 
     document.removeEventListener(
         "pointerup",
@@ -1525,106 +1715,32 @@ function stopDragging(event) {
     );
 
 
-    /* ==========================================
-       INGREDIENT WAS DROPPED INTO BOWL
-    ========================================== */
-
-    if (droppedInBowl) {
-
-        cakeProgress[type]++;
-
-        updateCakeProgress();
+    draggedIngredient = null;
 
 
-        console.log(
-            "Added:",
-            type,
-            cakeProgress[type] +
-            "/" +
-            needed[type]
+    if (finished) {
+
+        /*
+           Give Safari a moment to finish
+           the pointer event before changing
+           the entire screen.
+        */
+
+        setTimeout(
+            function() {
+
+                showScreen(
+                    "final-screen"
+                );
+
+
+                sendGameSession();
+
+            },
+            50
         );
 
-
-        /*
-           Remove the ingredient once its required
-           amount has been reached.
-        */
-
-        if (
-            cakeProgress[type] >=
-            needed[type]
-        ) {
-
-            ingredient.remove();
-
-        }
-
-        else {
-
-            draggedIngredient =
-                ingredient;
-
-            resetDraggedIngredient();
-
-        }
-
-
-        /*
-           CHECK FOR COMPLETE CAKE
-        */
-
-        if (cakeMakingFinished()) {
-
-            console.log(
-                "CAKE COMPLETE!"
-            );
-
-            console.log(
-                "Final cake progress:",
-                cakeProgress
-            );
-
-
-            draggedIngredient = null;
-
-
-            showScreen(
-                "final-screen"
-            );
-
-
-            setTimeout(
-                function() {
-
-                    sendGameSession();
-
-                },
-                100
-            );
-
-
-            return;
-
-        }
-
     }
-
-
-    /* ==========================================
-       INGREDIENT MISSED THE BOWL
-    ========================================== */
-
-    else {
-
-        draggedIngredient =
-            ingredient;
-
-        resetDraggedIngredient();
-
-    }
-
-
-    draggedIngredient = null;
 
 }
 
@@ -1695,26 +1811,15 @@ function updateCakeProgress() {
                 );
 
 
-            if (row) {
+            if (
+                row &&
+                cakeProgress[type] >=
+                needed[type]
+            ) {
 
-                if (
-                    cakeProgress[type] >=
-                    needed[type]
-                ) {
-
-                    row.classList.add(
-                        "cake-complete"
-                    );
-
-                }
-
-                else {
-
-                    row.classList.remove(
-                        "cake-complete"
-                    );
-
-                }
+                row.classList.add(
+                    "cake-complete"
+                );
 
             }
 
