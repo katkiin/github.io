@@ -507,44 +507,49 @@ function createFallingIngredient() {
         true
     );
 
-/*
-   Add wrong ingredients.
-   Desktop gets FIVE wrong ingredients.
-   Mobile gets THREE wrong ingredients.
-*/
-
-const wrongIngredientCount =
-    window.innerWidth <= 600 ? 3 : 5;
-
-
-for (
-    let i = 0;
-    i < wrongIngredientCount;
-    i++
-) {
 
     /*
-       If we run out of unique ingredient
-       types, start using them again.
+       Find possible wrong ingredients.
     */
 
-    const wrongType =
-        wrongTypes[
-            i % wrongTypes.length
-        ];
+    let wrongTypes =
+        ingredientTypes.filter(
+            function(type) {
+
+                return type !== targetType;
+
+            }
+        );
 
 
-    createFallingObject(
-        wrongType,
-        false
-    );
+    /*
+       Shuffle the possible wrong ingredients.
+    */
 
-}
+    wrongTypes =
+        wrongTypes.sort(
+            function() {
 
-        /*
-           If we run out of unique ingredient
-           types, start using them again.
-        */
+                return Math.random() - 0.5;
+
+            }
+        );
+
+
+    /*
+       Desktop = 5 wrong ingredients (6 total)
+       Mobile = 2 wrong ingredients (3 total)
+    */
+
+    const wrongIngredientCount =
+        window.innerWidth <= 600 ? 2 : 5;
+
+
+    for (
+        let i = 0;
+        i < wrongIngredientCount;
+        i++
+    ) {
 
         const wrongType =
             wrongTypes[
