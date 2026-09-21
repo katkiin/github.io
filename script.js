@@ -819,29 +819,13 @@ const rightButton =
 
 leftButton.addEventListener(
     "pointerdown",
-    function() {
+    function(event) {
 
-        keys.left = true;
+        event.preventDefault();
 
-    }
-);
+        berryX -= 35;
 
-
-leftButton.addEventListener(
-    "pointerup",
-    function() {
-
-        keys.left = false;
-
-    }
-);
-
-
-leftButton.addEventListener(
-    "pointerleave",
-    function() {
-
-        keys.left = false;
+        moveBerry();
 
     }
 );
@@ -849,33 +833,16 @@ leftButton.addEventListener(
 
 rightButton.addEventListener(
     "pointerdown",
-    function() {
+    function(event) {
 
-        keys.right = true;
+        event.preventDefault();
 
-    }
-);
+        berryX += 35;
 
-
-rightButton.addEventListener(
-    "pointerup",
-    function() {
-
-        keys.right = false;
+        moveBerry();
 
     }
 );
-
-
-rightButton.addEventListener(
-    "pointerleave",
-    function() {
-
-        keys.right = false;
-
-    }
-);
-
 
 /* ==================================================
    MOVE INGREDIENTS
