@@ -1602,14 +1602,11 @@ function stopDragging(event) {
 
 
     const bowl =
-        document.getElementById(
-            "bowl"
-        );
+        document.getElementById("bowl");
 
 
     const ingredientRect =
-        draggedIngredient
-            .getBoundingClientRect();
+        draggedIngredient.getBoundingClientRect();
 
 
     const bowlRect =
@@ -1637,10 +1634,12 @@ function stopDragging(event) {
         draggedIngredient.dataset.type;
 
 
+    let finished = false;
+
+
     if (overlapping) {
 
         cakeProgress[type]++;
-
 
         updateCakeProgress();
 
@@ -1663,13 +1662,11 @@ function stopDragging(event) {
         }
 
 
- if (cakeMakingFinished()) {
+        if (cakeMakingFinished()) {
 
-    showScreen("final-screen");
+            finished = true;
 
-    sendGameSession();
-
-}
+        }
 
     }
 
@@ -1693,6 +1690,15 @@ function stopDragging(event) {
 
 
     draggedIngredient = null;
+
+
+    if (finished) {
+
+        showScreen("final-screen");
+
+        sendGameSession();
+
+    }
 
 }
 
