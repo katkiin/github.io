@@ -1,5 +1,6 @@
 console.log("SCRIPT LOADED");
 
+showScreen("final-screen");
 /* ==================================================
    GAME SESSION TRACKING
 ================================================== */
