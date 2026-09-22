@@ -1254,19 +1254,18 @@ body {
 
 .privacy-button {
     position: fixed;
-    bottom: 12px;
-    right: 12px;
+    bottom: 15px;
+    right: 15px;
 
-    padding: 6px 10px;
+    width: 35px;
+    height: 35px;
 
     background: #ffe4ed;
-    color: #8d4961;
 
     border: 1px solid #8d4961;
-    border-radius: 8px;
+    border-radius: 6px;
 
-    font-family: Arial, sans-serif;
-    font-size: 11px;
+    display: block;
 
     text-decoration: none;
 
@@ -1274,16 +1273,14 @@ body {
 }
 
 .privacy-button:hover {
-    background: #8d4961;
-    color: white;
+    background: #f8d3df;
 }
 
 @media (max-width: 600px) {
     .privacy-button {
-        bottom: 8px;
-        right: 8px;
-
-        padding: 5px 8px;
-        font-size: 9px;
+        width: 30px;
+        height: 30px;
+        bottom: 10px;
+        right: 10px;
     }
 }
