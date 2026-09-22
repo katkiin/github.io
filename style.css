@@ -1254,9 +1254,9 @@ body {
 
 .privacy-button {
     position: fixed;
-    bottom: 15px;
-    right: 15px;
-    width: 45px;
+    bottom: 12px;
+    right: 12px;
+    width: 35px;
 
     display: flex;
     flex-direction: column;
@@ -1267,7 +1267,7 @@ body {
 }
 
 .privacy-button img {
-    width: 35px;
+    width: 25px;
     height: auto;
     display: block;
     cursor: pointer;
@@ -1275,7 +1275,7 @@ body {
 
 .privacy-button span {
     margin-top: 2px;
-    font-size: 11px;
+    font-size: 9px;
     color: #8d4961;
 }
 
@@ -1285,16 +1285,16 @@ body {
 
 @media (max-width: 600px) {
     .privacy-button {
-        width: 50px;
-        bottom: 10px;
-        right: 10px;
+        width: 30px;
+        bottom: 8px;
+        right: 8px;
     }
 
     .privacy-button img {
-    width: 35px;
-}
+        width: 22px;
+    }
 
     .privacy-button span {
-        font-size: 10px;
+        font-size: 8px;
     }
 }
