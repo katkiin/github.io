@@ -1256,45 +1256,34 @@ body {
     position: fixed;
     bottom: 12px;
     right: 12px;
-    width: 35px;
 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    padding: 6px 10px;
+
+    background: #ffe4ed;
+    color: #8d4961;
+
+    border: 1px solid #8d4961;
+    border-radius: 8px;
+
+    font-family: Arial, sans-serif;
+    font-size: 11px;
 
     text-decoration: none;
+
     z-index: 100;
 }
 
-.privacy-button img {
-    width: 25px;
-    height: auto;
-    display: block;
-    cursor: pointer;
-}
-
-.privacy-button span {
-    margin-top: 2px;
-    font-size: 9px;
-    color: #8d4961;
-}
-
-.privacy-button:hover img {
-    transform: scale(1.1);
+.privacy-button:hover {
+    background: #8d4961;
+    color: white;
 }
 
 @media (max-width: 600px) {
     .privacy-button {
-        width: 30px;
         bottom: 8px;
         right: 8px;
-    }
 
-    .privacy-button img {
-        width: 22px;
-    }
-
-    .privacy-button span {
-        font-size: 8px;
+        padding: 5px 8px;
+        font-size: 9px;
     }
 }
