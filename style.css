@@ -1256,7 +1256,7 @@ body {
     position: fixed;
     bottom: 15px;
     right: 15px;
-    width: 60px;
+    width: 45px;
 
     display: flex;
     flex-direction: column;
@@ -1267,7 +1267,7 @@ body {
 }
 
 .privacy-button img {
-    width: 55px;
+    width: 35px;
     height: auto;
     display: block;
     cursor: pointer;
@@ -1291,8 +1291,8 @@ body {
     }
 
     .privacy-button img {
-        width: 45px;
-    }
+    width: 35px;
+}
 
     .privacy-button span {
         font-size: 10px;
