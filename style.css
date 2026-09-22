@@ -1252,67 +1252,56 @@ body {
     }
 }
 
-/* Small strawberry privacy buttons on final screen */
+/* PRIVACY STRAWBERRY BUTTONS */
 
-.privacy-strawberry {
-    position: absolute;
+#final-screen .privacy-strawberry {
+    position: absolute !important;
+    bottom: 20px !important;
 
-    bottom: 15px;
+    width: 50px !important;
+    height: 50px !important;
 
-    width: 35px;
-    height: 35px;
-
-    display: flex;
+    display: flex !important;
     align-items: center;
     justify-content: center;
 
-    z-index: 100;
+    z-index: 99999 !important;
 }
 
-.privacy-strawberry img {
-    width: 28px;
-    height: auto;
+#final-screen .privacy-strawberry img {
+    display: block !important;
+    width: 35px !important;
+    height: auto !important;
 
-    display: block;
-
-    cursor: pointer;
-
-    transition: transform 0.2s ease;
+    opacity: 1 !important;
+    visibility: visible !important;
 }
 
-.privacy-strawberry:hover img {
-    transform: scale(1.1);
+#final-screen .privacy-left {
+    left: 20px !important;
 }
 
-.privacy-left {
-    left: 15px;
+#final-screen .privacy-right {
+    right: 20px !important;
 }
-
-.privacy-right {
-    right: 15px;
-}
-
-
-/* Mobile */
 
 @media (max-width: 600px) {
 
-    .privacy-strawberry {
-        bottom: 10px;
-
-        width: 30px;
-        height: 30px;
+    #final-screen .privacy-strawberry {
+        width: 45px !important;
+        height: 45px !important;
+        bottom: 15px !important;
     }
 
-    .privacy-strawberry img {
-        width: 23px;
+    #final-screen .privacy-strawberry img {
+        width: 30px !important;
     }
 
-    .privacy-left {
-        left: 10px;
+    #final-screen .privacy-left {
+        left: 10px !important;
     }
 
-    .privacy-right {
-        right: 10px;
+    #final-screen .privacy-right {
+        right: 10px !important;
     }
 }
