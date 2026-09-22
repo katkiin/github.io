@@ -1720,32 +1720,25 @@ function stopDragging(event) {
 
     if (finished) {
 
-        const finalScreen =
-            document.getElementById(
-                "final-screen"
-            );
+        /*
+           Give Safari a moment to finish
+           the pointer event before changing
+           the entire screen.
+        */
+
+        setTimeout(
+            function() {
+
+                showScreen(
+                    "final-screen"
+                );
 
 
-        if (
-            finalScreen &&
-            !finalScreen.classList.contains(
-                "active"
-            )
-        ) {
+                sendGameSession();
 
-            requestAnimationFrame(
-                function() {
-
-                    showScreen(
-                        "final-screen"
-                    );
-
-                    sendGameSession();
-
-                }
-            );
-
-        }
+            },
+            50
+        );
 
     }
 
