@@ -1251,3 +1251,68 @@ body {
         max-width: 75vw;
     }
 }
+
+/* Small strawberry privacy buttons on final screen */
+
+.privacy-strawberry {
+    position: absolute;
+
+    bottom: 15px;
+
+    width: 35px;
+    height: 35px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    z-index: 100;
+}
+
+.privacy-strawberry img {
+    width: 28px;
+    height: auto;
+
+    display: block;
+
+    cursor: pointer;
+
+    transition: transform 0.2s ease;
+}
+
+.privacy-strawberry:hover img {
+    transform: scale(1.1);
+}
+
+.privacy-left {
+    left: 15px;
+}
+
+.privacy-right {
+    right: 15px;
+}
+
+
+/* Mobile */
+
+@media (max-width: 600px) {
+
+    .privacy-strawberry {
+        bottom: 10px;
+
+        width: 30px;
+        height: 30px;
+    }
+
+    .privacy-strawberry img {
+        width: 23px;
+    }
+
+    .privacy-left {
+        left: 10px;
+    }
+
+    .privacy-right {
+        right: 10px;
+    }
+}
