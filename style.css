@@ -1251,36 +1251,3 @@ body {
         max-width: 75vw;
     }
 }
-
-.privacy-button {
-    position: fixed;
-    bottom: 15px;
-    right: 15px;
-
-    width: 35px;
-    height: 35px;
-
-    background: #ffe4ed;
-
-    border: 1px solid #8d4961;
-    border-radius: 6px;
-
-    display: block;
-
-    text-decoration: none;
-
-    z-index: 100;
-}
-
-.privacy-button:hover {
-    background: #f8d3df;
-}
-
-@media (max-width: 600px) {
-    .privacy-button {
-        width: 30px;
-        height: 30px;
-        bottom: 10px;
-        right: 10px;
-    }
-}
