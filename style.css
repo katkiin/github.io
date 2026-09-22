@@ -34,14 +34,6 @@ body {
     display: flex;
 }
 
-#final-screen {
-    display: none;
-}
-
-#final-screen.active {
-    display: flex !important;
-}
-
 
 /* =========================
    INTRO
