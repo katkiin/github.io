@@ -34,6 +34,14 @@ body {
     display: flex;
 }
 
+#final-screen {
+    display: none;
+}
+
+#final-screen.active {
+    display: flex !important;
+}
+
 
 /* =========================
    INTRO
@@ -1146,16 +1154,6 @@ body {
         padding: 20px;
 
         overflow: hidden;
-    }
-
-    /*
-       IMPORTANT:
-       This guarantees that the final screen
-       becomes visible when it has the active class.
-    */
-
-    #final-screen.active {
-        display: flex !important;
     }
 
     #final-message {
